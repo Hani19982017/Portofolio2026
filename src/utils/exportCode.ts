@@ -7,7 +7,6 @@ import {
   trainingCourses,
   certificatesData,
   skillCategories,
-  languages,
 } from '../data/portfolioData';
 
 export function getSeparateHTML(): string {
@@ -75,6 +74,7 @@ export function getSeparateHTML(): string {
         <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="https://wa.me/201067770148" target="_blank" class="btn-whatsapp-nav">💬 WhatsApp</a></li>
         <li><a href="#contact" class="btn-primary-sm">Contact</a></li>
       </ul>
     </nav>
@@ -83,13 +83,14 @@ export function getSeparateHTML(): string {
   <!-- Hero Section -->
   <section id="hero" class="hero-section">
     <div class="container hero-content">
-      <div class="badge-status">🟢 Available for Full-Time & Freelance Contracts</div>
+      <div class="badge-status">🟢 Available for Full-Time & Freelance Projects</div>
       <h1 class="hero-name">${contactDetails.name}</h1>
       <h2 class="hero-title">${contactDetails.title}</h2>
-      <p class="hero-location">📍 ${contactDetails.location} • ✉️ <a href="mailto:${contactDetails.email}">${contactDetails.email}</a> • 📞 ${contactDetails.phone1} / ${contactDetails.phone2}</p>
+      <p class="hero-location">📍 ${contactDetails.location} • 💬 WhatsApp: <a href="https://wa.me/201067770148" target="_blank">+201067770148</a> • ✉️ <a href="mailto:${contactDetails.email}">${contactDetails.email}</a></p>
       <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-secondary">Hire Me</a>
+        <a href="https://wa.me/201067770148" target="_blank" class="btn-whatsapp">💬 Chat on WhatsApp (+201067770148)</a>
+        <a href="#projects" class="btn-primary">View Projects (${projectsData.length})</a>
+        <a href="#contact" class="btn-secondary">Send Message</a>
         <a href="${contactDetails.github}" target="_blank" class="btn-outline">GitHub</a>
         <a href="${contactDetails.linkedin}" target="_blank" class="btn-outline">LinkedIn</a>
       </div>
@@ -194,13 +195,26 @@ export function getSeparateHTML(): string {
       <h2 class="section-title">Let's Connect & Collaborate</h2>
       <p class="section-subtitle">Reach out directly for freelance projects, WordPress development, or full-time opportunities.</p>
       <div class="contact-grid">
+        <!-- Direct WhatsApp Card -->
+        <div class="whatsapp-featured-card">
+          <div class="wa-header">
+            <span class="wa-icon">💬</span>
+            <div>
+              <h3>WhatsApp Direct Chat</h3>
+              <p class="wa-number">+20 106 777 0148</p>
+            </div>
+          </div>
+          <p class="wa-desc">Instant replies for new project quotes, WooCommerce builds, or contract opportunities.</p>
+          <a href="https://wa.me/201067770148" target="_blank" class="btn-whatsapp-full">Open WhatsApp Chat (+201067770148)</a>
+        </div>
+
         <div class="contact-card">
-          <p>📧 Email: <a href="mailto:${contactDetails.email}">${contactDetails.email}</a></p>
-          <p>📞 Phone 1: <a href="tel:${contactDetails.phone1}">${contactDetails.phone1}</a></p>
-          <p>📞 Phone 2: <a href="tel:${contactDetails.phone2}">${contactDetails.phone2}</a></p>
-          <p>📍 Location: ${contactDetails.location}</p>
-          <p>🔗 LinkedIn: <a href="${contactDetails.linkedin}" target="_blank">mohamed-hani500</a></p>
-          <p>🐙 GitHub: <a href="${contactDetails.github}" target="_blank">mtdm2023</a></p>
+          <p>📧 <strong>Email:</strong> <a href="mailto:${contactDetails.email}">${contactDetails.email}</a></p>
+          <p>📞 <strong>Phone 1:</strong> <a href="tel:${contactDetails.phone1}">${contactDetails.phone1}</a></p>
+          <p>📞 <strong>Phone 2:</strong> <a href="tel:${contactDetails.phone2}">${contactDetails.phone2}</a></p>
+          <p>📍 <strong>Location:</strong> ${contactDetails.location}</p>
+          <p>🔗 <strong>LinkedIn:</strong> <a href="${contactDetails.linkedin}" target="_blank">mohamed-hani500</a></p>
+          <p>🐙 <strong>GitHub:</strong> <a href="${contactDetails.github}" target="_blank">mtdm2023</a></p>
         </div>
       </div>
     </div>
@@ -209,9 +223,14 @@ export function getSeparateHTML(): string {
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>© ${new Date().getFullYear()} ${contactDetails.name}. All Rights Reserved.</p>
+      <p>© ${new Date().getFullYear()} ${contactDetails.name}. All Rights Reserved. • WhatsApp: +201067770148</p>
     </div>
   </footer>
+
+  <!-- Floating WhatsApp Action -->
+  <a href="https://wa.me/201067770148" target="_blank" class="floating-wa-btn" title="Chat on WhatsApp (+201067770148)">
+    💬
+  </a>
 
   <script src="script.js"></script>
 </body>
@@ -229,6 +248,8 @@ export function getSeparateCSS(): string {
   --accent: #10b981;
   --accent-hover: #059669;
   --accent-light: rgba(16, 185, 129, 0.12);
+  --wa-green: #25D366;
+  --wa-dark: #128C7E;
   --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
@@ -301,7 +322,7 @@ a:hover {
 }
 
 .nav-links a:hover {
-  color: var(--text-primary);
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -311,25 +332,48 @@ a:hover {
   font-weight: 600;
   padding: 6px 14px;
   border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.btn-primary-sm:hover {
+  background: var(--accent-hover);
+}
+
+.btn-whatsapp-nav {
+  background: rgba(37, 211, 102, 0.15);
+  color: #25D366 !important;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.btn-whatsapp-nav:hover {
+  background: rgba(37, 211, 102, 0.25);
 }
 
 /* Hero Section */
 .hero-section {
-  padding: 80px 0 60px;
+  padding: 90px 0 70px 0;
+  border-bottom: 1px solid var(--card-border);
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 60%);
+}
+
+.hero-content {
   text-align: center;
-  background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
 }
 
 .badge-status {
   display: inline-block;
   background: var(--accent-light);
   color: var(--accent);
-  padding: 6px 16px;
-  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 20px;
-  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .hero-name {
@@ -340,91 +384,113 @@ a:hover {
 }
 
 .hero-title {
-  font-size: 1.35rem;
-  color: var(--accent);
-  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  font-weight: 400;
   margin-bottom: 16px;
 }
 
 .hero-location {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  margin-bottom: 30px;
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 32px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 12px;
   justify-content: center;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary, .btn-outline {
-  padding: 10px 22px;
+.btn-whatsapp {
+  background: var(--wa-green);
+  color: #020617;
+  padding: 12px 24px;
   border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-weight: 700;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  text-decoration: none;
+  opacity: 0.92;
 }
 
 .btn-primary {
   background: var(--accent);
   color: #020617;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
 }
+
 .btn-primary:hover {
   background: var(--accent-hover);
   text-decoration: none;
 }
 
 .btn-secondary {
-  background: #1e293b;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   color: var(--text-primary);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
 }
+
 .btn-secondary:hover {
-  background: #334155;
+  border-color: var(--text-secondary);
   text-decoration: none;
 }
 
 .btn-outline {
   border: 1px solid var(--card-border);
-  color: var(--text-primary);
+  color: var(--text-secondary);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
 }
+
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
   text-decoration: none;
 }
 
-/* Sections */
+/* Sections Global */
 section {
   padding: 70px 0;
   border-bottom: 1px solid var(--card-border);
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
 .section-subtitle {
   text-align: center;
   color: var(--text-secondary);
-  margin-bottom: 40px;
-  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  font-size: 1rem;
 }
 
-/* Objective Box */
 .objective-box {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 32px;
   border-radius: 12px;
+  padding: 30px;
   font-size: 1.1rem;
-  line-height: 1.8;
   color: #cbd5e1;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 /* Filter Controls */
@@ -432,15 +498,17 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .filter-buttons {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .filter-btn {
@@ -449,32 +517,42 @@ section {
   color: var(--text-secondary);
   padding: 8px 16px;
   border-radius: 6px;
+  font-size: 0.85rem;
   cursor: pointer;
-  font-size: 0.9rem;
   transition: all 0.2s;
 }
 
-.filter-btn.active, .filter-btn:hover {
+.filter-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.filter-btn.active {
   background: var(--accent);
   color: #020617;
-  border-color: var(--accent);
   font-weight: 600;
+  border-color: var(--accent);
 }
 
 .search-input {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   color: var(--text-primary);
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  width: 280px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  min-width: 260px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
 }
 
 /* Projects Grid */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
 }
 
@@ -598,27 +676,34 @@ section {
 }
 
 .period-badge {
-  font-size: 0.85rem;
-  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
   padding: 4px 10px;
-  border-radius: 6px;
-  color: #cbd5e1;
+  border-radius: 4px;
+  color: var(--text-secondary);
 }
 
 .period-badge.current {
   background: var(--accent-light);
   color: var(--accent);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+}
+
+.location-tag {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 14px;
 }
 
 .bullet-list {
   padding-left: 20px;
-  margin: 16px 0;
-  color: var(--text-secondary);
+  margin-bottom: 16px;
+  color: #cbd5e1;
+  font-size: 0.95rem;
 }
 
 .bullet-list li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .skill-tags {
@@ -628,31 +713,33 @@ section {
 }
 
 .skill-pill {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--accent);
-  padding: 3px 8px;
+  font-size: 0.75rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.8rem;
 }
 
 /* Skills Grid */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 20px;
 }
 
 .skill-category-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 24px;
   border-radius: 12px;
+  padding: 20px;
 }
 
 .skill-category-card h3 {
+  font-size: 1.1rem;
   margin-bottom: 16px;
-  font-size: 1.2rem;
-  color: var(--accent);
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 8px;
 }
 
 .skill-pills-list {
@@ -662,35 +749,35 @@ section {
 }
 
 .skill-item {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--card-border);
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.85rem;
 }
 
 .skill-item.highlight {
-  border-color: rgba(16, 185, 129, 0.4);
-  color: #6ee7b7;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-/* Education */
+/* Education & Certs */
 .edu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
 .edu-card, .cert-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 28px;
   border-radius: 12px;
+  padding: 28px;
 }
 
 .grad-project {
   margin-top: 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.2);
   padding: 16px;
   border-radius: 8px;
   border-left: 3px solid var(--accent);
@@ -698,53 +785,122 @@ section {
 
 .cert-list {
   list-style: none;
+  padding: 0;
 }
 
 .cert-list li {
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
 }
 
-/* Contact */
+/* Contact Grid & WhatsApp Card */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.whatsapp-featured-card {
+  background: linear-gradient(180deg, rgba(37, 211, 102, 0.15), var(--card-bg));
+  border: 2px solid rgba(37, 211, 102, 0.4);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wa-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.wa-icon {
+  font-size: 2rem;
+}
+
+.wa-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--wa-green);
+  font-family: monospace;
+}
+
+.wa-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.btn-whatsapp-full {
+  background: var(--wa-green);
+  color: #020617;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: opacity 0.2s;
+  display: block;
+}
+
+.btn-whatsapp-full:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
 .contact-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 32px;
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 1.1rem;
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.contact-card p {
-  margin-bottom: 14px;
+/* Floating WhatsApp Button */
+.floating-wa-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--wa-green);
+  color: white;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.floating-wa-btn:hover {
+  transform: scale(1.08);
+  text-decoration: none;
 }
 
 /* Footer */
 .footer {
-  text-align: center;
   padding: 30px 0;
-  color: var(--text-secondary);
+  text-align: center;
+  color: #64748b;
   font-size: 0.9rem;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .hero-name {
-    font-size: 2.2rem;
-  }
-  .nav-links {
-    display: none;
-  }
-  .filter-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .search-input {
-    width: 100%;
-  }
+  .hero-name { font-size: 2.2rem; }
+  .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
 }
 `;
 }

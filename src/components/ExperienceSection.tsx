@@ -1,41 +1,59 @@
 import React from 'react';
 import { Briefcase, Calendar, MapPin, CheckCircle2, Building2 } from 'lucide-react';
 import { experienceData } from '../data/portfolioData';
+import { experienceDataAr } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const ExperienceSection: React.FC = () => {
+  const { language, isRTL } = useLanguage();
+  const t = translations[language];
+
+  const currentExperienceList =
+    language === 'ar' ? experienceDataAr : experienceData;
+
   return (
     <section id="experience" className="py-20 bg-slate-950/70 border-b border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3 border border-emerald-500/20">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Employment Journey</span>
+            <span>{t.experience.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-            Work Experience
+            {t.experience.title}
           </h2>
           <p className="mt-3 text-base text-slate-400">
-            Professional track record developing web platforms, custom WordPress themes, and front-end architectures.
+            {t.experience.subtitle}
           </p>
         </div>
 
         {/* Timeline Container */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-4 sm:left-8 top-4 bottom-4 w-0.5 bg-gradient-to-b from-emerald-500 via-teal-500/50 to-slate-800" />
+          {/* Vertical line with RTL adaptability */}
+          <div
+            className={`absolute ${
+              isRTL ? 'right-4 sm:right-8' : 'left-4 sm:left-8'
+            } top-4 bottom-4 w-0.5 bg-gradient-to-b from-emerald-500 via-teal-500/50 to-slate-800`}
+          />
 
           <div className="space-y-10">
-            {experienceData.map((exp) => (
+            {currentExperienceList.map((exp) => (
               <div
                 key={exp.id}
                 id={`exp-${exp.id}`}
-                className="relative pl-12 sm:pl-20 group"
+                className={`relative ${
+                  isRTL ? 'pr-12 sm:pr-20' : 'pl-12 sm:pl-20'
+                } group`}
               >
                 {/* Marker Dot */}
                 <div
-                  className={`absolute left-2.5 sm:left-6.5 top-1.5 w-3.5 h-3.5 rounded-full border-2 transform -translate-x-1/2 transition-transform group-hover:scale-125 ${
+                  className={`absolute ${
+                    isRTL
+                      ? 'right-2.5 sm:right-6.5 translate-x-1/2'
+                      : 'left-2.5 sm:left-6.5 -translate-x-1/2'
+                  } top-1.5 w-3.5 h-3.5 rounded-full border-2 transform transition-transform group-hover:scale-125 ${
                     exp.isCurrent
                       ? 'bg-emerald-400 border-emerald-300 shadow-lg shadow-emerald-400/50 ring-4 ring-emerald-500/20'
                       : 'bg-slate-900 border-slate-600 group-hover:border-emerald-400'
@@ -44,7 +62,6 @@ export const ExperienceSection: React.FC = () => {
 
                 {/* Card */}
                 <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 border border-slate-800/90 shadow-xl hover:border-slate-700 transition-all">
-                  
                   {/* Top Bar: Role & Period */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                     <div>
@@ -57,17 +74,17 @@ export const ExperienceSection: React.FC = () => {
                         </span>
                         {exp.isCurrent && (
                           <span className="text-xs px-2.5 py-0.5 rounded-md bg-teal-500/20 text-teal-300 font-semibold animate-pulse">
-                            Current Role
+                            {language === 'ar' ? 'الوظيفة الحالية' : 'Current Role'}
                           </span>
                         )}
                       </div>
-                      
-                      <div className="flex items-center gap-3 text-sm text-slate-300 font-medium mt-1">
+
+                      <div className="flex items-center gap-3 text-sm text-slate-300 font-medium mt-1.5 flex-wrap">
                         <span className="flex items-center gap-1 text-emerald-400 font-semibold">
                           <Building2 className="w-4 h-4" />
                           {exp.company}
                         </span>
-                        <span className="text-slate-600">•</span>
+                        <span className="text-slate-600 hidden sm:inline">•</span>
                         <span className="flex items-center gap-1 text-slate-400 text-xs">
                           <MapPin className="w-3.5 h-3.5" />
                           {exp.location}
@@ -76,7 +93,7 @@ export const ExperienceSection: React.FC = () => {
                     </div>
 
                     {/* Period badge */}
-                    <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 self-start sm:self-auto font-mono">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-300 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 self-start sm:self-auto font-mono">
                       <Calendar className="w-3.5 h-3.5 text-slate-500" />
                       <span>{exp.period}</span>
                     </div>
@@ -95,26 +112,24 @@ export const ExperienceSection: React.FC = () => {
                   {/* Core Skills Tags */}
                   <div className="pt-4 border-t border-slate-800/80">
                     <span className="text-xs font-semibold text-slate-400 block mb-2">
-                      Technologies & Practices:
+                      {t.experience.technologiesUsed}:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
-                      {exp.coreSkills.map((skill, sIdx) => (
+                      {exp.coreSkills.map((skill, idx) => (
                         <span
-                          key={sIdx}
-                          className="text-[11px] px-2.5 py-1 rounded bg-slate-800/70 text-slate-300 border border-slate-700/50 hover:border-emerald-500/30 transition-colors"
+                          key={idx}
+                          className="text-[11px] px-2.5 py-1 rounded bg-slate-800/80 text-emerald-300/90 border border-slate-700/60 font-mono"
                         >
                           {skill}
                         </span>
                       ))}
                     </div>
                   </div>
-
                 </div>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

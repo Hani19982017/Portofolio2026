@@ -2,10 +2,6 @@ import React, { useState, useMemo } from 'react';
 import {
   FolderGit2,
   Search,
-  ExternalLink,
-  Layers,
-  Sparkles,
-  Tag,
   Wrench,
   CheckCircle2,
   X,
@@ -14,23 +10,33 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
+import { projectsDataAr } from '../data/translations';
 import { Project } from '../types';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const ProjectsSection: React.FC = () => {
+  const { language, isRTL } = useLanguage();
+  const t = translations[language];
+
+  const currentProjectsList = language === 'ar' ? projectsDataAr : projectsData;
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+  const [activeModalProject, setActiveModalProject] = useState<Project | null>(
+    null
+  );
 
   const categories = [
-    { id: 'all', label: `All Projects (${projectsData.length})` },
-    { id: 'wordpress', label: 'WordPress & WooCommerce (9)' },
-    { id: 'shopify', label: 'Shopify Stores (2)' },
-    { id: 'frontend', label: 'Frontend Apps (3)' },
-    { id: 'ai', label: 'AI & Research (1)' },
+    { id: 'all', label: `${t.projects.allCategories} (${currentProjectsList.length})` },
+    { id: 'wordpress', label: `${t.projects.categories.wordpress} (9)` },
+    { id: 'shopify', label: `${t.projects.categories.shopify} (2)` },
+    { id: 'frontend', label: `${t.projects.categories.frontend} (3)` },
+    { id: 'ai', label: `${t.projects.categories.ai} (1)` },
   ];
 
   const filteredProjects = useMemo(() => {
-    return projectsData.filter((project) => {
+    return currentProjectsList.filter((project) => {
       const matchesCategory =
         selectedCategory === 'all' || project.category === selectedCategory;
 
@@ -41,38 +47,41 @@ export const ProjectsSection: React.FC = () => {
         project.title.toLowerCase().includes(query) ||
         project.subtitle.toLowerCase().includes(query) ||
         project.description.toLowerCase().includes(query) ||
-        project.technologies.some((tech) => tech.toLowerCase().includes(query)) ||
+        project.technologies.some((tech) =>
+          tech.toLowerCase().includes(query)
+        ) ||
         project.tools.some((tool) => tool.toLowerCase().includes(query));
 
       return matchesCategory && matchesQuery;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [currentProjectsList, selectedCategory, searchQuery]);
 
   return (
     <section id="projects" className="py-20 bg-slate-950 border-b border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3 border border-emerald-500/20">
               <FolderGit2 className="w-3.5 h-3.5" />
-              <span>Full Portfolio Showcase</span>
+              <span>{t.projects.badge}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-              Projects I Have Built ({projectsData.length})
+              {t.projects.title} ({currentProjectsList.length})
             </h2>
             <p className="mt-2 text-base text-slate-400 max-w-2xl">
-              From real-world commercial WooCommerce & Shopify stores to custom ACF platforms, REST API portals, and AI systems.
+              {t.projects.subtitle}
             </p>
           </div>
 
           {/* Quick Counter */}
           <div className="flex items-center gap-2 text-xs font-mono bg-slate-900 px-4 py-2 rounded-xl border border-slate-800 text-slate-300 self-start md:self-auto">
-            <span>Showing:</span>
-            <span className="text-emerald-400 font-bold">{filteredProjects.length}</span>
-            <span>of</span>
-            <span>{projectsData.length} projects</span>
+            <span>{language === 'ar' ? 'المعروض:' : 'Showing:'}</span>
+            <span className="text-emerald-400 font-bold">
+              {filteredProjects.length}
+            </span>
+            <span>/</span>
+            <span>{currentProjectsList.length}</span>
           </div>
         </div>
 
@@ -98,21 +107,29 @@ export const ProjectsSection: React.FC = () => {
 
           {/* Search Input */}
           <div className="relative w-full lg:w-72">
-            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search
+              className={`w-4 h-4 text-slate-500 absolute ${
+                isRTL ? 'right-3.5' : 'left-3.5'
+              } top-1/2 -translate-y-1/2`}
+            />
             <input
               id="search-projects-input"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search tech, ACF, Liquid..."
-              className="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+              placeholder={t.projects.searchPlaceholder}
+              className={`w-full bg-slate-900/90 border border-slate-800 rounded-xl ${
+                isRTL ? 'pr-10 pl-4' : 'pl-10 pr-4'
+              } py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all`}
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs"
+                className={`absolute ${
+                  isRTL ? 'left-3' : 'right-3'
+                } top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs`}
               >
-                Clear
+                {language === 'ar' ? 'مسح' : 'Clear'}
               </button>
             )}
           </div>
@@ -122,18 +139,22 @@ export const ProjectsSection: React.FC = () => {
         {filteredProjects.length === 0 && (
           <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">
             <SlidersHorizontal className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-white">No projects found</h3>
+            <h3 className="text-lg font-bold text-white">
+              {t.projects.noResults}
+            </h3>
             <p className="text-sm text-slate-400 mt-1">
-              Try adjusting your search query or switching category filters.
+              {language === 'ar'
+                ? 'جرّب تعديل نص البحث أو اختيار تصنيف آخر.'
+                : 'Try adjusting your search query or switching category filters.'}
             </p>
             <button
               onClick={() => {
                 setSelectedCategory('all');
                 setSearchQuery('');
               }}
-              className="mt-4 px-4 py-2 text-xs font-semibold bg-emerald-500 text-slate-950 rounded-lg"
+              className="mt-4 px-4 py-2 text-xs font-semibold bg-emerald-500 text-slate-950 rounded-lg cursor-pointer"
             >
-              Reset Filters
+              {t.projects.resetFilters}
             </button>
           </div>
         )}
@@ -193,7 +214,9 @@ export const ProjectsSection: React.FC = () => {
                 <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
                   <span className="flex items-center gap-1">
                     <Wrench className="w-3.5 h-3.5 text-slate-500" />
-                    <span className="truncate max-w-[170px]">{project.tools.join(', ')}</span>
+                    <span className="truncate max-w-[190px]">
+                      {project.tools.join(', ')}
+                    </span>
                   </span>
                 </div>
 
@@ -203,39 +226,46 @@ export const ProjectsSection: React.FC = () => {
                   className="w-full py-2.5 px-3 rounded-xl bg-slate-800/70 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer group/btn"
                 >
                   <Eye className="w-4 h-4 text-emerald-400 group-hover/btn:text-slate-950 transition-colors" />
-                  <span>View Full Details & Architecture</span>
-                  <ChevronRight className="w-3.5 h-3.5 opacity-60" />
+                  <span>{t.projects.viewCaseStudy}</span>
+                  <ChevronRight
+                    className={`w-3.5 h-3.5 opacity-60 ${
+                      isRTL ? 'rotate-180' : ''
+                    }`}
+                  />
                 </button>
               </div>
             </div>
           ))}
         </div>
-
       </div>
 
       {/* Project Details Modal */}
       {activeModalProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div
-            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-slate-900 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6"
+            className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-slate-900 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6 ${
+              isRTL ? 'text-right' : 'text-left'
+            }`}
             id="project-detail-modal"
           >
             {/* Modal Close Button */}
             <button
               onClick={() => setActiveModalProject(null)}
-              className="absolute top-5 right-5 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className={`absolute top-5 ${
+                isRTL ? 'left-5' : 'right-5'
+              } p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer`}
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Modal Header */}
             <div>
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <span className="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                   {activeModalProject.categoryLabel}
                 </span>
                 <span className="text-xs text-slate-400 font-mono">
-                  Role: {activeModalProject.role}
+                  {t.projects.role}: {activeModalProject.role}
                 </span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white font-display">
@@ -249,19 +279,29 @@ export const ProjectsSection: React.FC = () => {
             {/* Client & Context */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
               <div>
-                <span className="text-slate-500 block">Project Purpose / Client:</span>
-                <span className="text-slate-200 font-medium">{activeModalProject.clientType}</span>
+                <span className="text-slate-500 block">
+                  {language === 'ar' ? 'نوع العميل / المشروع:' : 'Client Type:'}
+                </span>
+                <span className="text-slate-200 font-medium">
+                  {activeModalProject.clientType}
+                </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Development Tools:</span>
-                <span className="text-slate-200 font-medium">{activeModalProject.tools.join(', ')}</span>
+                <span className="text-slate-500 block">
+                  {t.projects.tools}:
+                </span>
+                <span className="text-slate-200 font-medium">
+                  {activeModalProject.tools.join(', ')}
+                </span>
               </div>
             </div>
 
             {/* Project Overview */}
             <div className="space-y-2">
               <h4 className="text-sm font-bold uppercase tracking-wider text-slate-300">
-                Project Overview & Objectives
+                {language === 'ar'
+                  ? 'نبذة عن المشروع والأهداف'
+                  : 'Project Overview & Objectives'}
               </h4>
               <p className="text-sm text-slate-300 leading-relaxed bg-slate-950/30 p-4 rounded-xl border border-slate-800/80">
                 {activeModalProject.description}
@@ -271,7 +311,9 @@ export const ProjectsSection: React.FC = () => {
             {/* Full Architectural Details */}
             <div className="space-y-2">
               <h4 className="text-sm font-bold uppercase tracking-wider text-slate-300">
-                Engineering & Implementation Details
+                {language === 'ar'
+                  ? 'التفاصيل الهندسية والتنفيذ البرمجي'
+                  : 'Engineering & Implementation Details'}
               </h4>
               <p className="text-sm text-slate-300 leading-relaxed bg-slate-950/30 p-4 rounded-xl border border-slate-800/80">
                 {activeModalProject.fullDetails}
@@ -282,11 +324,14 @@ export const ProjectsSection: React.FC = () => {
             {activeModalProject.highlights && (
               <div className="space-y-2">
                 <h4 className="text-sm font-bold uppercase tracking-wider text-slate-300">
-                  Key Achievements & Features
+                  {t.projects.keyHighlights}
                 </h4>
                 <ul className="space-y-2">
                   {activeModalProject.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300"
+                    >
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{h}</span>
                     </li>
@@ -298,15 +343,15 @@ export const ProjectsSection: React.FC = () => {
             {/* Complete Technologies List */}
             <div className="space-y-2">
               <h4 className="text-sm font-bold uppercase tracking-wider text-slate-300">
-                Technologies & Frameworks
+                {t.projects.technologies}
               </h4>
               <div className="flex flex-wrap gap-2">
-                {activeModalProject.technologies.map((t, i) => (
+                {activeModalProject.technologies.map((item, i) => (
                   <span
                     key={i}
                     className="text-xs px-3 py-1 rounded-md bg-slate-800 text-emerald-300 border border-slate-700"
                   >
-                    {t}
+                    {item}
                   </span>
                 ))}
               </div>
@@ -318,7 +363,7 @@ export const ProjectsSection: React.FC = () => {
                 onClick={() => setActiveModalProject(null)}
                 className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-semibold transition-colors cursor-pointer"
               >
-                Close Case Study
+                {t.projects.closeModal}
               </button>
             </div>
           </div>

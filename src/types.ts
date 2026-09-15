@@ -52,7 +52,9 @@ export interface TrainingCourse {
 export interface CertificateItem {
   id: string;
   title: string;
+  titleAr?: string;
   issuer: string;
+  issuerAr?: string;
   duration?: string;
   description?: string;
   type: 'course' | 'contest';
@@ -70,10 +72,15 @@ export interface SkillCategory {
 
 export interface ContactDetails {
   name: string;
+  nameAr?: string;
   title: string;
+  titleAr?: string;
   location: string;
+  locationAr?: string;
   phone1: string;
   phone2: string;
+  whatsapp: string;
+  whatsappUrl: string;
   email: string;
   linkedin: string;
   github: string;

@@ -10,10 +10,15 @@ import {
 
 export const contactDetails: ContactDetails = {
   name: 'Mohamed Hani Mohamed',
+  nameAr: 'محمد هاني محمد',
   title: 'Full-stack WordPress Developer & Web Engineer',
+  titleAr: 'مطور ووردبريس متكامل ومهندس واجهات أمامية',
   location: 'Cairo, Egypt',
+  locationAr: 'القاهرة، مصر',
   phone1: '+201067770148',
   phone2: '+201507558158',
+  whatsapp: '+201067770148',
+  whatsappUrl: 'https://wa.me/201067770148',
   email: 'm.hanitdm@gmail.com',
   linkedin: 'https://www.linkedin.com/in/mohamed-hani500',
   github: 'https://github.com/mtdm2023',

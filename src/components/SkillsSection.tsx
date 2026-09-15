@@ -5,13 +5,20 @@ import {
   Palette,
   Users,
   Languages,
-  CheckCircle,
-  Sparkles,
   Zap,
 } from 'lucide-react';
-import { skillCategories, languages } from '../data/portfolioData';
+import { skillCategories, languages as staticLanguages } from '../data/portfolioData';
+import { skillCategoriesAr } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const SkillsSection: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
+  const currentSkillCategories =
+    language === 'ar' ? skillCategoriesAr : skillCategories;
+
   const [activeTab, setActiveTab] = useState<string>('all');
 
   const tabIcons: Record<string, React.ReactNode> = {
@@ -19,28 +26,37 @@ export const SkillsSection: React.FC = () => {
     backend: <Database className="w-4 h-4" />,
     principles: <Palette className="w-4 h-4" />,
     interpersonal: <Users className="w-4 h-4" />,
+    cms: <Code2 className="w-4 h-4" />,
+    tools: <Database className="w-4 h-4" />,
   };
 
   const filteredCategories =
     activeTab === 'all'
-      ? skillCategories
-      : skillCategories.filter((cat) => cat.categoryKey === activeTab);
+      ? currentSkillCategories
+      : currentSkillCategories.filter((cat) => cat.categoryKey === activeTab);
+
+  const displayedLanguages =
+    language === 'ar'
+      ? [
+          { name: 'اللغة العربية', level: 'اللغة الأم (Native)', dots: 5 },
+          { name: 'اللغة الإنجليزية', level: 'جيد جداً (Professional)', dots: 4 },
+        ]
+      : staticLanguages;
 
   return (
     <section id="skills" className="py-20 bg-slate-950 border-b border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3 border border-emerald-500/20">
             <Zap className="w-3.5 h-3.5" />
-            <span>Core Competencies</span>
+            <span>{t.skills.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-            Technical & Professional Skills
+            {t.skills.title}
           </h2>
           <p className="mt-3 text-base text-slate-400">
-            A comprehensive matrix of technologies, frameworks, CMS environments, and programming disciplines.
+            {t.skills.subtitle}
           </p>
         </div>
 
@@ -54,9 +70,9 @@ export const SkillsSection: React.FC = () => {
                 : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
             }`}
           >
-            All Skills
+            {language === 'ar' ? 'جميع المهارات' : 'All Skills'}
           </button>
-          {skillCategories.map((cat) => (
+          {currentSkillCategories.map((cat) => (
             <button
               key={cat.categoryKey}
               onClick={() => setActiveTab(cat.categoryKey)}
@@ -66,8 +82,8 @@ export const SkillsSection: React.FC = () => {
                   : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
-              {tabIcons[cat.categoryKey]}
-              <span>{cat.title}</span>
+              {tabIcons[cat.categoryKey] || <Code2 className="w-4 h-4" />}
+              <span>{cat.title.split('(')[0]}</span>
             </button>
           ))}
         </div>
@@ -81,24 +97,25 @@ export const SkillsSection: React.FC = () => {
             >
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800/80">
                 <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
-                  {tabIcons[category.categoryKey]}
+                  {tabIcons[category.categoryKey] || <Code2 className="w-4 h-4" />}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white font-display">
+                  <h3 className="text-lg sm:text-xl font-bold text-white font-display">
                     {category.title}
                   </h3>
                   <span className="text-xs text-slate-400 font-mono">
-                    {category.skills.length} skills listed
+                    {category.skills.length}{' '}
+                    {language === 'ar' ? 'مهارة مدرجة' : 'skills listed'}
                   </span>
                 </div>
               </div>
 
               {/* Skills Badges Grid */}
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, sIdx) => (
                   <div
                     key={sIdx}
-                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                       skill.highlight
                         ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/30 hover:border-emerald-400'
                         : 'bg-slate-900/90 text-slate-300 border border-slate-800 hover:border-slate-700'
@@ -123,25 +140,36 @@ export const SkillsSection: React.FC = () => {
             </div>
             <div>
               <h4 className="text-lg font-bold text-white font-display">
-                Languages Spoken & Written
+                {language === 'ar'
+                  ? 'اللغات المحكية والمكتوبة'
+                  : 'Languages Spoken & Written'}
               </h4>
               <p className="text-xs text-slate-400">
-                Comfortable communicating across international distributed teams and localized clients.
+                {language === 'ar'
+                  ? 'تواصل فعال ومهني مع الفرق الدولية المتوزعة والعملاء في العالم العربي والشرق الأوسط.'
+                  : 'Comfortable communicating across international distributed teams and localized clients.'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            {languages.map((lang, lIdx) => (
-              <div key={lIdx} className="bg-slate-950/80 px-4 py-3 rounded-xl border border-slate-800 text-center">
-                <span className="text-sm font-bold text-white block">{lang.name}</span>
-                <span className="text-xs text-emerald-400 font-medium block mt-0.5">{lang.level}</span>
+          <div className="flex items-center gap-4 sm:gap-6">
+            {displayedLanguages.map((langItem, lIdx) => (
+              <div
+                key={lIdx}
+                className="bg-slate-950/80 px-4 py-3 rounded-xl border border-slate-800 text-center min-w-[130px]"
+              >
+                <span className="text-sm font-bold text-white block">
+                  {langItem.name}
+                </span>
+                <span className="text-xs text-emerald-400 font-medium block mt-0.5">
+                  {langItem.level}
+                </span>
                 <div className="flex items-center justify-center gap-1 mt-2">
                   {[...Array(5)].map((_, i) => (
                     <span
                       key={i}
                       className={`w-2 h-2 rounded-full ${
-                        i < lang.dots ? 'bg-emerald-400' : 'bg-slate-700'
+                        i < langItem.dots ? 'bg-emerald-400' : 'bg-slate-700'
                       }`}
                     />
                   ))}
@@ -150,7 +178,6 @@ export const SkillsSection: React.FC = () => {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
