@@ -114,13 +114,13 @@ export const ProjectsSection: React.FC = () => {
         {/* Filter Bar & Search */}
         <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-800/80">
           {/* Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 id={`filter-${cat.id}`}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat.id
                     ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
                     : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
@@ -267,9 +267,9 @@ export const ProjectsSection: React.FC = () => {
 
       {/* Project Details Modal */}
       {activeModalProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm">
           <div
-            className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-slate-900 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6 ${
+            className={`relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-slate-900 border border-slate-700 rounded-2xl p-5 sm:p-8 shadow-2xl space-y-5 sm:space-y-6 ${
               isRTL ? 'text-right' : 'text-left'
             }`}
             id="project-detail-modal"
@@ -277,9 +277,9 @@ export const ProjectsSection: React.FC = () => {
             {/* Modal Close Button */}
             <button
               onClick={() => setActiveModalProject(null)}
-              className={`absolute top-5 ${
-                isRTL ? 'left-5' : 'right-5'
-              } p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer`}
+              className={`absolute top-4 ${
+                isRTL ? 'left-4' : 'right-4'
+              } p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer z-10`}
             >
               <X className="w-5 h-5" />
             </button>

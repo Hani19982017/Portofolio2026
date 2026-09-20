@@ -57,24 +57,27 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md">
       <div className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden">
         {/* Modal Action Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950 no-print">
-          <div className="flex items-center gap-2 text-white font-bold font-display">
-            <FileText className="w-5 h-5 text-emerald-400" />
-            <span>
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-800 bg-slate-950 no-print">
+          <div className="flex items-center gap-2 text-white font-bold font-display text-sm sm:text-base">
+            <FileText className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+            <span className="truncate">
               {isAr
                 ? 'معاينة السيرة الذاتية الرسمية'
                 : 'Curriculum Vitae Preview'}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded-lg transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded-lg transition-colors cursor-pointer"
             >
               <Printer className="w-4 h-4" />
-              <span>
+              <span className="hidden sm:inline">
                 {isAr ? 'طباعة / حفظ كـ PDF' : 'Print / Save as PDF'}
+              </span>
+              <span className="sm:hidden">
+                {isAr ? 'طباعة PDF' : 'Print PDF'}
               </span>
             </button>
             <button
@@ -90,7 +93,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
         <div
           id="cv-printable-area"
           dir={isRTL ? 'rtl' : 'ltr'}
-          className={`flex-1 p-8 sm:p-12 overflow-y-auto bg-white text-slate-900 space-y-8 ${
+          className={`flex-1 p-5 sm:p-12 overflow-y-auto bg-white text-slate-900 space-y-8 ${
             isAr ? 'font-arabic' : 'font-sans'
           }`}
         >

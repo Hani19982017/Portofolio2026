@@ -47,22 +47,22 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Main Hero Copy */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             {/* Availability Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>{t.hero.availableBadge}</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold tracking-wide max-w-full">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0" />
+              <span className="truncate">{t.hero.availableBadge}</span>
             </div>
 
             {/* Headline */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] font-display">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.2] font-display">
                 {t.hero.greeting}{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
                   {t.hero.greetingSurname}
                 </span>
               </h1>
-              <p className="text-xl sm:text-2xl text-slate-300 font-medium mt-3 flex items-center gap-2 flex-wrap font-display">
+              <p className="text-lg sm:text-2xl text-slate-300 font-medium mt-2.5 flex items-center gap-2 flex-wrap font-display">
                 <span>{t.hero.roleSubtitle1}</span>
                 <span className="text-slate-600 hidden sm:inline">•</span>
                 <span className="text-emerald-400">{t.hero.roleSubtitle2}</span>
@@ -70,12 +70,12 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Short Bio */}
-            <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-400 leading-relaxed max-w-2xl">
               {t.hero.bio}
             </p>
 
             {/* Contact Quick Info Badges */}
-            <div className="flex flex-wrap gap-2.5 pt-2 text-sm text-slate-300">
+            <div className="flex flex-wrap gap-2 pt-1 text-xs sm:text-sm text-slate-300">
               {/* WhatsApp Quick Link */}
               <a
                 href={`https://wa.me/201067770148?text=${encodeURIComponent(
@@ -83,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 transition-colors group font-semibold"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 transition-colors group font-semibold"
                 title="WhatsApp +201067770148"
               >
                 <MessageCircle className="w-4 h-4 fill-current stroke-none" />
@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-4">
+            <div className="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
               {/* WhatsApp Direct Chat Button */}
               <a
                 id="btn-hero-whatsapp"
@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-bold text-sm shadow-lg shadow-[#25D366]/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-bold text-sm shadow-lg shadow-[#25D366]/25 transition-all flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-5 h-5 fill-slate-950 stroke-none" />
                 <span>{t.hero.chatWhatsApp}</span>
@@ -138,7 +138,7 @@ export const Hero: React.FC<HeroProps> = ({
               <a
                 id="btn-hero-projects"
                 href="#projects"
-                className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2"
               >
                 <span>
                   {t.hero.viewProjects} ({projectsData.length})
@@ -146,25 +146,27 @@ export const Hero: React.FC<HeroProps> = ({
                 <ArrowDown className="w-4 h-4" />
               </a>
 
-              {/* HTML, CSS, JS Export Code */}
-              <button
-                id="btn-hero-code"
-                onClick={onOpenExportModal}
-                className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 text-emerald-400 font-semibold text-sm transition-all flex items-center gap-2 cursor-pointer group"
-              >
-                <Code2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span>{t.hero.getStandaloneCode}</span>
-              </button>
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 w-full sm:w-auto">
+                {/* HTML, CSS, JS Export Code */}
+                <button
+                  id="btn-hero-code"
+                  onClick={onOpenExportModal}
+                  className="px-3.5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 text-emerald-400 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer group"
+                >
+                  <Code2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  <span className="truncate">{t.hero.getStandaloneCode}</span>
+                </button>
 
-              {/* Resume / CV Modal */}
-              <button
-                id="btn-hero-resume"
-                onClick={onOpenResumeModal}
-                className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 cursor-pointer"
-              >
-                <FileText className="w-4 h-4 text-emerald-400" />
-                <span>{t.hero.downloadCv}</span>
-              </button>
+                {/* Resume / CV Modal */}
+                <button
+                  id="btn-hero-resume"
+                  onClick={onOpenResumeModal}
+                  className="px-3.5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer"
+                >
+                  <FileText className="w-4 h-4 text-emerald-400" />
+                  <span className="truncate">{t.hero.downloadCv}</span>
+                </button>
+              </div>
             </div>
 
             {/* Social Links */}

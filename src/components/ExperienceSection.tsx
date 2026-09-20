@@ -61,7 +61,7 @@ export const ExperienceSection: React.FC = () => {
                 />
 
                 {/* Card */}
-                <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 border border-slate-800/90 shadow-xl hover:border-slate-700 transition-all">
+                <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-4 sm:p-8 border border-slate-800/90 shadow-xl hover:border-slate-700 transition-all">
                   {/* Top Bar: Role & Period */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                     <div>

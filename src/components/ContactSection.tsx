@@ -53,8 +53,8 @@ export const ContactSection: React.FC = () => {
 
   const whatsappMessage =
     language === 'ar'
-      ? 'مرحباً مهندس محمد هاني، أرغب في التواصل معك لمناقشة مشروع ووردبريس / متجر إلكتروني.'
-      : 'Hello Mohamed Hani, I would like to contact you regarding a WordPress / E-commerce project.';
+      ? 'مرحباً مهندس محمد هاني، أرغب في التواصل معك لمناقشة مشروع برمجي / Full-Stack.'
+      : 'Hello Mohamed Hani, I would like to contact you regarding a software / Full-Stack project.';
 
   const whatsappLink = `https://wa.me/201067770148?text=${encodeURIComponent(
     whatsappMessage
@@ -81,7 +81,7 @@ export const ContactSection: React.FC = () => {
           {/* Direct Contact Cards */}
           <div className="lg:col-span-5 space-y-4">
             {/* WhatsApp Priority Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-b from-[#25D366]/15 via-slate-900/90 to-slate-950 border-2 border-[#25D366]/40 shadow-xl shadow-[#25D366]/10 relative overflow-hidden group">
+            <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-[#25D366]/15 via-slate-900/90 to-slate-950 border-2 border-[#25D366]/40 shadow-xl shadow-[#25D366]/10 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#25D366]/10 rounded-full blur-2xl pointer-events-none"></div>
 
               <div className="flex items-center justify-between mb-4">
@@ -268,7 +268,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Contact Message Form */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 border border-slate-800 shadow-2xl">
+            <div className="p-4 sm:p-8 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 border border-slate-800 shadow-2xl">
               <h3 className="text-xl font-bold text-white mb-2 font-display">
                 {t.contact.sendMessageTitle}
               </h3>

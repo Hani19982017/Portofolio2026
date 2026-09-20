@@ -73,10 +73,10 @@ export const SkillsSection: React.FC = () => {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-12">
+        <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto sm:flex-wrap mb-8 sm:mb-12 pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
               activeTab === 'all'
                 ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20'
                 : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
@@ -88,7 +88,7 @@ export const SkillsSection: React.FC = () => {
             <button
               key={cat.categoryKey}
               onClick={() => setActiveTab(cat.categoryKey)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === cat.categoryKey
                   ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20'
                   : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
@@ -101,18 +101,18 @@ export const SkillsSection: React.FC = () => {
         </div>
 
         {/* Skills Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
           {filteredCategories.map((category) => (
             <div
               key={category.categoryKey}
-              className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 border border-slate-800 shadow-xl relative"
+              className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-4 sm:p-8 border border-slate-800 shadow-xl relative"
             >
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800/80">
-                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
+              <div className="flex items-center gap-3 mb-5 sm:mb-6 pb-4 border-b border-slate-800/80">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
                   {tabIcons[category.categoryKey] || <Code2 className="w-4 h-4" />}
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white font-display">
+                  <h3 className="text-base sm:text-xl font-bold text-white font-display">
                     {category.title}
                   </h3>
                   <span className="text-xs text-slate-400 font-mono">
@@ -123,11 +123,11 @@ export const SkillsSection: React.FC = () => {
               </div>
 
               {/* Skills Badges Grid */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {category.skills.map((skill, sIdx) => (
                   <div
                     key={sIdx}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                    className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                       skill.highlight
                         ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/30 hover:border-emerald-400'
                         : 'bg-slate-900/90 text-slate-300 border border-slate-800 hover:border-slate-700'
@@ -145,7 +145,7 @@ export const SkillsSection: React.FC = () => {
         </div>
 
         {/* Languages Banner */}
-        <div className="rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/70 to-slate-900 p-6 sm:p-8 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/70 to-slate-900 p-4 sm:p-8 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
               <Languages className="w-6 h-6" />

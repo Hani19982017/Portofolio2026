@@ -20,14 +20,14 @@ export const FloatingWhatsApp: React.FC = () => {
 
   return (
     <div
-      className={`fixed bottom-6 ${
-        isRTL ? 'left-6' : 'right-6'
+      className={`fixed bottom-4 sm:bottom-6 ${
+        isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'
       } z-50 flex flex-col items-end no-print`}
     >
       {/* Pop-over Card when opened */}
       {isOpen && (
         <div
-          className={`mb-3 w-80 sm:w-88 rounded-2xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 ${
+          className={`mb-3 w-[calc(100vw-2rem)] max-w-[340px] sm:max-w-sm rounded-2xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 ${
             isRTL ? 'text-right' : 'text-left'
           }`}
         >
@@ -65,12 +65,12 @@ export const FloatingWhatsApp: React.FC = () => {
               {language === 'ar' ? (
                 <>
                   أهلاً بك! يمكنك مراسلتي مباشرة عبر واتساب بخصوص أي مشروع
-                  ووردبريس أو متجر إلكتروني أو عمل حر.
+                  برمجي أو تطوير ويب أو عمل حر.
                 </>
               ) : (
                 <>
                   Hello! Feel free to reach out directly on WhatsApp regarding any
-                  WordPress, WooCommerce, Shopify, or freelance inquiry.
+                  full-stack, web development, or freelance inquiry.
                 </>
               )}
             </div>
@@ -102,14 +102,14 @@ export const FloatingWhatsApp: React.FC = () => {
         <button
           id="btn-floating-whatsapp"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-xl shadow-emerald-900/40 transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 relative focus:outline-none"
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-xl shadow-emerald-900/40 transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 relative focus:outline-none"
           title={t.floatingWhatsApp.tooltip}
           aria-label="WhatsApp"
         >
           {/* Subtle pulse ring */}
           <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none"></span>
 
-          <MessageCircle className="w-7 h-7 fill-white stroke-none" />
+          <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 fill-white stroke-none" />
         </button>
 
         {/* Hover pill preview if closed */}

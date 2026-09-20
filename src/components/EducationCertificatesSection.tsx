@@ -45,24 +45,24 @@ export const EducationCertificatesSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Ain Shams CS Degree & Graduation Project */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
+            <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-4 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
-                  <GraduationCap className="w-6 h-6" />
+              <div className="flex items-start gap-3 sm:gap-4 mb-6">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                  <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <span className="text-xs text-emerald-400 font-semibold uppercase tracking-wider">
                     {language === 'ar' ? 'المؤهل الجامعي' : 'University Degree'}
                   </span>
-                  <h3 className="text-2xl font-bold text-white font-display mt-0.5">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
                     {currentEducation.degree}
                   </h3>
-                  <h4 className="text-base text-slate-300 font-medium mt-1">
+                  <h4 className="text-sm sm:text-base text-slate-300 font-medium mt-1">
                     {currentEducation.institution}
                   </h4>
-                  <div className="flex items-center gap-3 text-xs text-slate-400 mt-2 font-mono">
+                  <div className="flex items-center gap-3 text-xs text-slate-400 mt-2 font-mono flex-wrap">
                     <span>{currentEducation.period}</span>
                     <span>•</span>
                     <span className="px-2 py-0.5 rounded bg-slate-800 text-emerald-300 font-semibold">
@@ -74,7 +74,7 @@ export const EducationCertificatesSection: React.FC = () => {
               </div>
 
               {/* Graduation Project Deep Dive */}
-              <div className="mt-6 pt-6 border-t border-slate-800/80 bg-slate-950/40 p-5 rounded-xl border border-slate-800/60">
+              <div className="mt-6 pt-6 border-t border-slate-800/80 bg-slate-950/40 p-4 sm:p-5 rounded-xl border border-slate-800/60">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Brain className="w-4 h-4 text-purple-400" />
@@ -122,7 +122,7 @@ export const EducationCertificatesSection: React.FC = () => {
             </div>
 
             {/* Problem Solving Contests Card */}
-            <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 border border-slate-800 shadow-xl">
+            <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-4 sm:p-8 border border-slate-800 shadow-xl">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 rounded-xl bg-amber-500/10 text-amber-400">
                   <Trophy className="w-6 h-6" />
@@ -140,7 +140,7 @@ export const EducationCertificatesSection: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-start gap-3">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-start gap-3">
                   <Award className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                   <div>
                     <h4 className="text-sm font-bold text-white">
@@ -156,7 +156,7 @@ export const EducationCertificatesSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-start gap-3">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-start gap-3">
                   <Award className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                   <div>
                     <h4 className="text-sm font-bold text-white">
@@ -177,7 +177,7 @@ export const EducationCertificatesSection: React.FC = () => {
 
           {/* Professional Training & Courses */}
           <div className="lg:col-span-6">
-            <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 border border-slate-800 shadow-xl h-full flex flex-col">
+            <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 p-4 sm:p-8 border border-slate-800 shadow-xl h-full flex flex-col">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
                   <BookOpen className="w-6 h-6" />
