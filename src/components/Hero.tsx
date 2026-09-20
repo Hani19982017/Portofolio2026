@@ -227,7 +227,7 @@ export const Hero: React.FC<HeroProps> = ({
                   </span>
                 </div>
                 <span className="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  Full-Stack WP
+                  {language === 'ar' ? 'مهندس برمجيات Full-Stack' : 'Full-Stack Software Engineer'}
                 </span>
               </div>
 
@@ -240,13 +240,13 @@ export const Hero: React.FC<HeroProps> = ({
                   <div>
                     <h4 className="text-sm font-semibold text-white">
                       {language === 'ar'
-                        ? 'أكثر من 15 مشروعاً حقيقياً وتجارياً'
-                        : '15+ Real-World Projects'}
+                        ? '+21 مشروعاً تجارياً ومنصة حقيقية'
+                        : '21+ Real-World Platforms & Projects'}
                     </h4>
                     <p className="text-xs text-slate-400 mt-0.5">
                       {language === 'ar'
-                        ? 'متاجر ووكومرس، شوبيفاي Liquid، قوالب ACF مخصصة، Divi، Elementor، و REST APIs.'
-                        : 'WooCommerce stores, Shopify Liquid, Custom ACF setups, Divi, Elementor, and REST APIs.'}
+                        ? 'منصات SaaS، تطبيقات شوبيفاي في متجر App Store، معارض 3D، ومواقع شركات ألمانية وخليجية.'
+                        : 'Production SaaS, Shopify App Store products, Three.js 3D showrooms, and German enterprise sites.'}
                     </p>
                   </div>
                 </div>
@@ -258,13 +258,13 @@ export const Hero: React.FC<HeroProps> = ({
                   <div>
                     <h4 className="text-sm font-semibold text-white">
                       {language === 'ar'
-                        ? 'هندسة الواجهات الأمامية والـ CMS'
-                        : 'Enterprise Front-End & CMS'}
+                        ? 'هندسة الـ Full-Stack وتصميم النظم'
+                        : 'Full-Stack & System Architecture'}
                     </h4>
                     <p className="text-xs text-slate-400 mt-0.5">
                       {language === 'ar'
-                        ? 'HTML5, CSS3, JavaScript ES6+, Bootstrap 5, Angular, React، وهياكل برمجية سريعة.'
-                        : 'HTML5, CSS3, JavaScript ES6+, Bootstrap 5, Angular, React, and responsive architecture.'}
+                        ? 'Next.js, React, Node.js, NestJS, Laravel, TypeScript, PostgreSQL, Prisma, tRPC, و AWS.'
+                        : 'Next.js, React, Node.js, NestJS, Laravel, TypeScript, PostgreSQL, Prisma, tRPC, and AWS.'}
                     </p>
                   </div>
                 </div>
@@ -276,13 +276,13 @@ export const Hero: React.FC<HeroProps> = ({
                   <div>
                     <h4 className="text-sm font-semibold text-white">
                       {language === 'ar'
-                        ? 'حل المشكلات والخوارزميات (ACM / ECPC)'
-                        : 'Problem Solving & Algorithms'}
+                        ? 'ويب 3D سينمائي والتطوير بالذكاء الاصطناعي'
+                        : 'Cinematic 3D & AI Vibe Coding'}
                     </h4>
                     <p className="text-xs text-slate-400 mt-0.5">
                       {language === 'ar'
-                        ? 'تصفيات ECPC والمنافسات البرمجية بجامعة عين شمس (المركز 28 في المستوى الأول وتأهل للمستوى الثاني).'
-                        : 'Ain Shams University Level 1 contest (28th place) & ACM Ain Shams Level 2 qualifier.'}
+                        ? 'Three.js, WebGL, ضغط النماذج إلى 18MB، حركات GSAP، روبوتات Gemini AI و WhatsApp API.'
+                        : 'Three.js, WebGL, 95% Draco model compression, GSAP scroll physics, and Gemini AI workflows.'}
                     </p>
                   </div>
                 </div>
@@ -299,8 +299,8 @@ export const Hero: React.FC<HeroProps> = ({
                     </h4>
                     <p className="text-xs text-slate-400 mt-0.5">
                       {language === 'ar'
-                        ? 'جامعة عين شمس (2017 - 2021) مع مشروع تخرج بتقدير ممتاز في الذكاء الاصطناعي (CNN).'
-                        : 'Ain Shams University with Grade: Excellent Deep Learning CNN Graduation Project.'}
+                        ? 'جامعة عين شمس (2017 - 2021) ومشروع تخرج ممتاز في الذكاء الاصطناعي (CNN) وتصفيات ECPC.'
+                        : 'Ain Shams University (2017–2021) with Grade: Excellent Deep Learning CNN Project & ECPC.'}
                     </p>
                   </div>
                 </div>
@@ -313,17 +313,18 @@ export const Hero: React.FC<HeroProps> = ({
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {[
-                    'WordPress',
-                    'WooCommerce',
-                    'Shopify',
-                    'PHP',
-                    'JavaScript',
-                    'Liquid',
-                    'Bootstrap 5',
-                    'ACF Pro',
-                    'REST API',
-                    'Angular',
-                    'React',
+                    'Next.js 14',
+                    'React 19',
+                    'Node.js',
+                    'TypeScript',
+                    'PostgreSQL',
+                    'Prisma / Drizzle',
+                    'AWS & Render',
+                    'Three.js & WebGL',
+                    'Shopify OS 2.0',
+                    'WordPress / Woo',
+                    'Gemini AI',
+                    'GSAP',
                   ].map((tag) => (
                     <span
                       key={tag}

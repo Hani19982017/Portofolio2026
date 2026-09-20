@@ -27,13 +27,39 @@ export const ProjectsSection: React.FC = () => {
     null
   );
 
-  const categories = [
-    { id: 'all', label: `${t.projects.allCategories} (${currentProjectsList.length})` },
-    { id: 'wordpress', label: `${t.projects.categories.wordpress} (9)` },
-    { id: 'shopify', label: `${t.projects.categories.shopify} (2)` },
-    { id: 'frontend', label: `${t.projects.categories.frontend} (3)` },
-    { id: 'ai', label: `${t.projects.categories.ai} (1)` },
-  ];
+  const categories = useMemo(() => {
+    const counts: Record<string, number> = {};
+    currentProjectsList.forEach((p) => {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+
+    const list: { id: string; label: string }[] = [
+      { id: 'all', label: `${t.projects.allCategories} (${currentProjectsList.length})` },
+    ];
+
+    const categoryOrder: string[] = [
+      'saas',
+      '3d',
+      'shopify',
+      'agency',
+      'wordpress',
+      'ai',
+      'frontend',
+    ];
+
+    categoryOrder.forEach((catKey) => {
+      const count = counts[catKey] || 0;
+      const catLabel = (t.projects.categories as Record<string, string>)[catKey];
+      if (count > 0 && catLabel) {
+        list.push({
+          id: catKey,
+          label: `${catLabel} (${count})`,
+        });
+      }
+    });
+
+    return list;
+  }, [currentProjectsList, t.projects.allCategories, t.projects.categories]);
 
   const filteredProjects = useMemo(() => {
     return currentProjectsList.filter((project) => {

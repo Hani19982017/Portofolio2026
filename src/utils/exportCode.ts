@@ -59,7 +59,7 @@ export function getSeparateHTML(): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${contactDetails.name} | ${contactDetails.title}</title>
-  <meta name="description" content="Portfolio of ${contactDetails.name} - Full-stack WordPress & Web Developer.">
+  <meta name="description" content="Portfolio of ${contactDetails.name} - Full-Stack Software Engineer, System Design & Cloud Architecture.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -117,10 +117,12 @@ export function getSeparateHTML(): string {
       <div class="filter-controls">
         <div class="filter-buttons">
           <button class="filter-btn active" data-filter="all">All Projects (${projectsData.length})</button>
-          <button class="filter-btn" data-filter="wordpress">WordPress & WooCommerce (9)</button>
-          <button class="filter-btn" data-filter="shopify">Shopify E-Commerce (2)</button>
-          <button class="filter-btn" data-filter="frontend">Frontend & Apps (3)</button>
-          <button class="filter-btn" data-filter="ai">AI & Deep Learning (1)</button>
+          <button class="filter-btn" data-filter="saas">SaaS & Web Apps</button>
+          <button class="filter-btn" data-filter="3d">3D & Cinematic Web</button>
+          <button class="filter-btn" data-filter="shopify">Shopify E-Commerce</button>
+          <button class="filter-btn" data-filter="agency">German & Agency Sites</button>
+          <button class="filter-btn" data-filter="wordpress">WordPress & WooCommerce</button>
+          <button class="filter-btn" data-filter="ai">AI & Research</button>
         </div>
         <input type="text" id="projectSearch" class="search-input" placeholder="Search project by name or tech...">
       </div>

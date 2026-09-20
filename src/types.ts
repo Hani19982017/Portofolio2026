@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'wordpress' | 'shopify' | 'frontend' | 'ai';
+  category: 'wordpress' | 'shopify' | 'frontend' | 'ai' | 'saas' | '3d' | 'agency';
   categoryLabel: string;
   description: string;
   fullDetails: string;
@@ -84,4 +84,5 @@ export interface ContactDetails {
   email: string;
   linkedin: string;
   github: string;
+  portfolioUrl?: string;
 }

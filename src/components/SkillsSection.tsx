@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import {
   Code2,
   Database,
-  Palette,
   Users,
-  Languages,
   Zap,
+  Box,
+  Server,
+  Layers,
+  Cloud,
+  Sparkles,
+  ShoppingBag,
+  Workflow,
+  Search,
+  Languages,
 } from 'lucide-react';
 import { skillCategories, languages as staticLanguages } from '../data/portfolioData';
 import { skillCategoriesAr } from '../data/translations';
@@ -23,11 +30,16 @@ export const SkillsSection: React.FC = () => {
 
   const tabIcons: Record<string, React.ReactNode> = {
     frontend: <Code2 className="w-4 h-4" />,
-    backend: <Database className="w-4 h-4" />,
-    principles: <Palette className="w-4 h-4" />,
+    '3d': <Box className="w-4 h-4" />,
+    backend: <Server className="w-4 h-4" />,
+    databases: <Database className="w-4 h-4" />,
+    architecture: <Layers className="w-4 h-4" />,
+    devops: <Cloud className="w-4 h-4" />,
+    ai: <Sparkles className="w-4 h-4" />,
+    ecommerce: <ShoppingBag className="w-4 h-4" />,
+    integrations: <Workflow className="w-4 h-4" />,
+    seo: <Search className="w-4 h-4" />,
     interpersonal: <Users className="w-4 h-4" />,
-    cms: <Code2 className="w-4 h-4" />,
-    tools: <Database className="w-4 h-4" />,
   };
 
   const filteredCategories =
